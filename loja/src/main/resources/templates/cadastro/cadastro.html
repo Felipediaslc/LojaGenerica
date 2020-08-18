@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/template :: header-css">
+<meta charset=utf-8/>
+</head>
+
+<body>
+	<div th:insert="fragments/template :: header"></div>
+	<div class="container text-center mt-3 titulos">
+		<h1>Cadastro de Produtos da loja</h1>
+	</div>
+	<section class="container mt-5">
+		<form method="post" enctype="multipart/form-data">
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="tipoProduto">Tipo
+					do Produto</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="tipoProduto" name="tipoProduto">
+						<option selected>Escolha...</option>
+						<option value="camisa">Camisa</option>
+						<option value="livro">Livro</option>
+						<option value="geral">Geral</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="descricao" class="col-sm-2 col-form-label">Descricao</label>
+				<div class="col-sm-10">
+					<textarea cols="30" rows="7" maxlength="54" required
+						class="form-control" id="descricao" name="descricao"
+						placeholder="Descricao do produto"
+						oninvalid="this.setCustomValidity('Digite sua descrição')"
+						oninput="setCustomValidity('')"></textarea>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="estoque" class="col-sm-2 col-form-label">Estoque</label>
+				<div class="col-sm-10">
+					<input type="number" min="1" class="form-control" id="estoque"
+						name="estoque" placeholder="Quantidade do produto">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="preco" class="col-sm-2 col-form-label">Preço</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" id="preco" name="preco"
+						required placeholder="Preço do produto"
+						oninvalid="this.setCustomValidity('Digite o preço')"
+						oninput="setCustomValidity('')" step="0.01" min="0.01">
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroupFileAddon01">Imagem
+						do produto</span>
+				</div>
+				<div class="custom-file col-sm-10">
+					<input type="file" class="custom-file-input" required id="file"
+						aria-describedby="inputGroupFileAddon01" name="file"> <label
+						class="custom-file-label" for="file"
+						oninvalid="this.setCustomValidity('Escolha um arquivo')"
+						oninput="setCustomValidity('')">Escolha o arquivo</label>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="">
+					<button type="submit" class="btn btn-primary">cadastrar</button>
+				</div>
+				<div th:if="${message}" class="ml-2 text-success text-center" role="alert">
+			<h5 th:text="${message}"></h5>
+		</div>
+			</div>
+		</form>
+	</section>
+
+	<div th:replace="fragments/template :: footer"></div>
+</body>
+</html>

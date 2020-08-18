@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/template :: header-css">
+<meta charset=utf-8 />
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+	<div th:insert="fragments/template :: header"></div>
+	<main class="container">
+		<h1 class="mt-4 titulos">Carrinho</h1>
+		<div th:if="!${carrinho != null && carrinho.getTotal() != 0}">
+			<h3 class="text-center titulos">Seu carrinho está vazio</h3>
+		</div>
+		<table th:if="${carrinho != null && carrinho.getTotal() != 0}"
+			class="container mt-5 mb-5 table-striped">
+			<thead>
+				<tr class="tamanho-linha-carrinho border ml-1">
+					<th scope="col" class=" text-center"><span>Produto</span></th>
+					<th scope="col" class="  text-center"><span></span></th>
+					<th scope="col" class="  text-center"><span>Quantidade</span>
+					<th scope="col" class="  text-center"><span>Preço</span></th>
+					<th scope="col" class="  text-center"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="tamanho-linha-carrinho border ml-1"
+					th:each="carrinhoItem: ${carrinho.itens}">
+					<th scope="row" class="  text-center"><img class="h-25"
+						href="#" th:src="${carrinhoItem.produto.urlImagem}"></th>
+					<td class="  text-center"><span
+						th:text="${carrinhoItem.produto.descricao}"></span></td>
+					<td class="  text-center">
+						<div class="btn-group inline" role="group"
+							aria-label="Basic example">
+							<form action="#" th:action="@{/carrinho/diminuir}">
+								<input type="hidden" th:value="${carrinhoItem.produto.codigo}"
+									name="codigo">
+								<button type="submit" title="diminuir"
+									class="btn btn-lihgt border">-</button>
+							</form>
+							<button type="submit" title="quantidade" class="btn "
+								th:text="${carrinho.getQuantidade(carrinhoItem)}" disabled></button>
+							<form action="#" th:action="@{/carrinho/aumentar}">
+								<input type="hidden" th:value="${carrinhoItem.produto.codigo}"
+									name="codigo">
+								<button type="submit" title="aumentar"
+									class="btn btn-lihgt border">+</button>
+							</form>
+						</div>
+					<td class="  text-center"><span
+						th:text="${carrinhoItem.getTotalFormatado(carrinho.getQuantidade(carrinhoItem))}"></span>
+
+					</td>
+					<td class="  text-center">
+						<form action="#" th:action="@{/carrinho/remover}">
+							<input type="hidden" th:value="${carrinhoItem.produto.codigo}"
+								name="codigo">
+							<button type="submit" title="remover" class="btn btn-dark">remover</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot class="tamanho-linha-carrinho border ml-1">
+				<tr>
+					<th class="  text-center">Total</th>
+					<td></td>
+					<td></td>
+					<td  class="  text-center"><span
+						th:text="${carrinho.totalFormatado}"></span></td>
+					<td class="  text-right pr-1">
+						<form action="#" th:action="@{/pagamento}" method="post">
+							<button type="submit" title="finalizar" class="btn btn-dark">Finalizar</button>
+						</form>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</main>
+	<div th:replace="fragments/template :: footer"></div>
+</body>
+</html>

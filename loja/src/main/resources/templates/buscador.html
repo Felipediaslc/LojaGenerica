@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/template :: header-css">
+<meta charset="utf-8" />
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+	
+	<div th:insert="fragments/template :: header"></div>
+
+	<main>
+
+		<div class="container-fluid">
+			
+			<div th:if="${produtoPage.content}" class="container mt-5">
+				<h3 class="text-center titulos">Resultados da busca</h3>
+			</div>
+			<div th:unless="${produtoPage.content}" class="container mt-5">
+				<h3 class="text-center titulos">Sua busca não retornou resultados</h3>
+			</div>
+			
+			<section class="row justify-content-center card-text text-info">
+				<article th:each="produto : ${produtoPage.content}"
+					class="card card-borda card-largura p-0 m-3 col-12 col-md-3">
+					<a th:href="@{'/detalhes/'+${produto.codigo}}"> <img
+						class="card-img-top card-posicao-imagem"
+						th:src="${produto.urlImagem}">
+						<div class="card-body">
+							<p th:text="${produto.descricao}" class="card-title"></p>
+							<p th:text="${produto.precoFormatado}" class="card-text"
+								id="preco"></p>
+						</div></a>
+				</article>
+			</section>
+			
+			<nav aria-label="Pagination" th:if="${produtoPage.totalPages gt 0}">
+				<ul class="pagination justify-content-center font-weight-bold">
+					<li class="page-item"
+						th:classappend="${produtoPage.number eq 0} ? 'disabled'"><a
+						class="page-link"
+						th:href="@{/buscador?busca={buscaAtual}&page={id}&usaBusca={usaBusca}(id=${produtoPage.number lt 1 ? 1 : produtoPage.number-1}, buscaAtual=${buscaAtual}, usaBusca=false)}"
+						aria-label="Previous" title="Previous Page" data-toggle="tooltip">
+							<span aria-hidden="true">&laquo;</span>
+					</a></li>
+					<li class="page-item"
+						th:classappend="${i eq produtoPage.number + 1} ? 'active'"
+						th:each="i : ${#numbers.sequence( 1, produtoPage.totalPages, 1)}">
+						<a class="page-link" th:href="@{/buscador?busca={buscaAtual}&page={id}&usaBusca={usaBusca}(id=(${i}-1), buscaAtual=${buscaAtual}, usaBusca=false)}"
+						th:text="${i}" th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+					</li>
+					<li class="page-item"
+						th:classappend="${produtoPage.number + 1 eq produtoPage.totalPages} ? 'disabled'">
+						<a class="page-link"
+						th:href="@{/buscador?busca={buscaAtual}&page={id}&usaBusca={usaBusca}(id=${produtoPage.number + 1},  buscaAtual=${buscaAtual}, usaBusca=false)}"
+						aria-label="Next" title="Next Page" data-toggle="tooltip"> <span
+							aria-hidden="true">&raquo;</span>
+					</a>
+					</li>
+				</ul>
+			</nav>
+			
+		</div>
+	</main>
+
+	<div th:insert="fragments/template :: footer"></div>
+
+</body>
+</html>

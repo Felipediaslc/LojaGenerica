@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="header-css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+	rel="stylesheet">
+<title>Loja Genérica - A maior loja do Brasil</title>
+
+</head>
+
+<body>
+
+	<div class="text-uppercase" th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-tops">
+			<div class="container mx-auto">
+				<a class="navbar-brand" href="/"> <img
+					src="/images/logo-loja.png" alt="Logo loja genérica">
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarNavAltMarkup"
+					aria-controls="navbarNavAltMarkup" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<form class="form-busca my-2 my-lg-0 w-50 w-sm-100"
+					th:action="@{/buscador}">
+					<div class="row w-100  m-0 mr-sm-2">
+						<div class="col px-0 left-input-busca bg-white"></div>
+						<input class="col-10 m-0 search_input px-0" type="search"
+							placeholder="O que você está buscando?" name="busca"
+							aria-label="Search">
+						<input  type="hidden" name="usaBusca" th:value="true">
+						<button type="submit" class="col-1 search_icon px-0 bg-white">
+							<i class="fas fa-search text-info" alt="Pesquisar"></i>
+						</button>
+					</div>
+				</form>
+				<div class="collapse navbar-collapse mx-auto"
+					id="navbarNavAltMarkup">
+					<ul class="navbar-nav">
+						<li sec:authorize="${hasRole('ROLE_ADMIN')}"><a
+							class="nav-item nav-link text-white w-auto active" href="#"
+							th:href="@{/cadastro}"><i class="fas fa-bars text-info"></i>
+								cadastrar <span class="sr-only">(current)</span></a></li>
+						<li sec:authorize="${hasRole('ROLE_USER')}"><a
+							class="nav-item nav-link text-white w-auto" href="#"><i
+								class="far fa-heart text-info h5 mr-1"></i>favoritos </a></li>
+						<li><a class="nav-item nav-link text-white" href="#"
+							th:href="@{/carrinho}"> <i
+								class="fas fa-shopping-cart text-info h5"></i> Carrinho
+						</a></li>
+					</ul>
+				</div>
+			</div>
+			<th:block sec:authorize="${!isAuthenticated()}">
+				<div th:if="${paginaLogin == null}">
+					<a class="nav-item nav-link text-white align-self-right" href="#"
+						th:href="@{/login}"> Logar </a>
+				</div>
+			</th:block>
+			<form sec:authorize="${isAuthenticated()}" th:action="@{/logout}"
+				method="post">
+				<label class="btn text-white" for="Sair"
+					sec:authentication="principal.username"></label> <input
+					class="btn text-white text-uppercase mb-2" type="submit" th:value="Sair"
+					name="Sair"></input>
+			</form>
+		</nav>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-tops">
+			<div class="container mx-auto">
+				<a class="navbar-brand" href="#">A maior loja do <span
+					class="text-info">Brasil</span></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarNavAltMarkup"
+					aria-controls="navbarNavAltMarkup" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse pl-4" id="navbarNavAltMarkup">
+					<ul class="navbar-nav">
+						<li><a class="nav-item nav-link" href="#"
+							th:href="@{'/tipoProduto?tipo=camisa'}">Camisas <span
+								class="sr-only">(current)</span>
+						</a></li>
+						<li><a class="nav-item nav-link" href="#"
+							th:href="@{'/tipoProduto?tipo=livro'}">Livros</a></li>
+						<li><a class="nav-item nav-link" href="#"
+							th:href="@{'/tipoProduto?tipo=geral'}">Geral</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="bg-dark text-white texto-rodapé pt-3 mt-auto"
+		th:fragment="footer">
+		<section class="container">
+			<div class="row">
+				<article class="col-sm ">
+					<h4>Desenvolvedor</h4>
+					<p class="">Guilherme do Vale Castro Oliveira</p>
+					<p class="">Telefone: (XX) X XXXX-XXXX</p>
+				</article>
+				<article class="col-sm text">
+					<h4>Sobre o site</h4>
+					<p class="">Este site é de ultilização destinada ao incremento
+						do portifólio</p>
+					<p class=" ">Utilizados conhecimentos obtidos através de
+						estudos de HTML, CSS, Java, Bootstrap, Javascript, JQuery, Spring
+						MVC, SpringBoot e edição de imagem</p>
+				</article>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

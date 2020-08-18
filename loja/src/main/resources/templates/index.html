@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/template :: header-css">
+<meta charset="utf-8" />
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+	
+	<div th:insert="fragments/template :: header"></div>
+
+	<main>
+		<div class="container">
+			<img class="container mt-3" src="/images/banner-loja.png"
+				alt="banner principal da loja genérica">
+		</div>
+
+		<div class="container-fluid">
+			
+			<div th:if="${produtos}" class="container mt-5">
+				<h3 class="text-center titulos">Ultimos lançamentos</h3>
+			</div>
+			<div th:unless="${produtos}" class="container mt-5">
+				<h3 class="text-center titulos">Sem produtos disponíveis</h3>
+			</div>
+			
+			<section class="row justify-content-center card-text text-info">
+				<article th:each="produto : ${produtos}"
+					class="card card-borda card-largura p-0 m-3 col-12 col-md-3">
+					<a th:href="@{'/detalhes/'+${produto.codigo}}"> <img
+						class="card-img-top card-posicao-imagem"
+						th:src="${produto.urlImagem}">
+						<div class="card-body">
+							<p th:text="${produto.descricao}" class="card-title"></p>
+							<p th:text="${produto.precoFormatado}" class="card-text"
+								id="preco"></p>
+						</div></a>
+				</article>
+			</section>
+		</div>
+	</main>
+
+	<div th:insert="fragments/template :: footer"></div>
+
+</body>
+</html>

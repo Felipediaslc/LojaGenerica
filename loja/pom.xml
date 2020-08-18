@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.loja</groupId>
+	<artifactId>loja</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>loja</name>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<start-class>br.com.loja.Configuracao</start-class>
+	</properties>
+	<dependencies>
+
+		<!-- Dependência com configurações padroes do springboot para economizar 
+			tempo e engloba vários starters (usa o tomcat por padrão) que são várias 
+			configurações defaut já feitas -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>2.2.2.RELEASE</version>
+			<!-- <exclusions> caso queira usar outro container web invés do tomcat 
+				<exclusion> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-tomcat</artifactId> 
+				</exclusion> </exclusions> -->
+		</dependency>
+
+		<!-- <dependency> caso queira usar o jetty invés do tomcat <groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-starter-jetty</artifactId> <version>1.4.2.RELEASE</version> 
+			</dependency> -->
+
+		<!-- Dependência para usar o xmlns th na página e poder usar tags de looping, 
+			usar templates e static em pasta padrao, etc. Basicamente o expretion language 
+			do springboot -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<version>2.2.2.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+			<version>3.0.4.RELEASE</version>
+		</dependency>
+
+
+
+		<!-- Dependência pra usar banco de dados no springboot -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>2.2.2.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.20</version>
+		</dependency>
+
+		<!-- Dependencia pra carregar no servidor cada mudança na páginapra não 
+			precisar restartar manualmente (é melhor usado com a extenção do chrome Live 
+			Reload que atualiza a página atomaticamente sempre que há atualização no 
+			servidor) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<version>2.2.2.RELEASE</version>
+		</dependency>
+
+		<!-- Para fazer layouts padroes e replicar em todas as páginas sem precisar 
+			repetir código, mas em thymeleaf -->
+		<!-- <dependency> <groupId>nz.net.ultraq.thymeleaf</groupId> <artifactId>thymeleaf-layout-dialect</artifactId> 
+			<version>2.4.1</version> </dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+			<version>2.3.1.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<version>5.2.5.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- webjar com framework bootstrap - WebJars são dependências do lado 
+			do cliente empacotadas em arquivos JAR -->
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.5.0</version>
+		</dependency>
+
+		<!-- o Spring detectará automaticamente a biblioteca webjars-locator no 
+			caminho de classe e a utilizará para resolver automaticamente a versão de 
+			qualquer ativo WebJars -->
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+			<version>0.40</version>
+		</dependency>
+
+		<!-- biblioteca para gerar metódos comuns para objetos POJO, colocar anotações 
+			e economizar código -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.12</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- biblioteca para gerar cache e obter performance -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+			<version>2.2.2.RELEASE</version>
+		</dependency>
+
+		<!-- biblioteca para gerar token e não precisar guardar muitas sessões 
+			e seguir o padrão stateless que é característica de REST -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins> <!-- //plugin para gerar um fat jar que roda a aplicação sem precisar instruir 
+					o maven como deve ser feito o empacotamento pra springboot e sobe tudo o 
+					que precisa pro projeto -->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>2.3.1.RELEASE</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>

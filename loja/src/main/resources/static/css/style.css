@@ -1,0 +1,93 @@
+a:hover {
+	text-decoration: none;
+}
+
+.card-largura {
+	max-width: 250px;
+}
+
+.card-posicao-imagem {
+	object-fit: cover;
+	height: 250px;
+}
+
+.card-borda {
+	border: none;
+}
+
+.card-title {
+	font-family: 'Varela Round', sans-serif;
+	height: 2rem;
+	font-weight: bold;
+}
+
+.titulos {
+	font-weight: bold;
+	color: red;
+	opacity: 0.7;
+}
+
+.texto-rodapé {
+	font-family: 'Varela Round', sans-serif;
+}
+
+.link-comprar: hover {
+	color: white;
+	height: 3rem;
+}
+
+.tamanho-linha-carrinho {
+	height: 75px;
+}
+
+/* searchbar Style */
+.search_input {
+	outline: 0;
+	border: none;
+}
+
+.left-input-busca {
+	border: none;
+	border-top-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+	height: 40px;
+}
+
+.search_icon {
+	justify-content: center;
+	align-items: center;
+	border: none;
+	text-decoration: none;
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
+
+.div-carrinho-l {
+	border:none;
+	border-top-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+}
+
+.div-carrinho-r {
+	border:none;
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
+
+/* Login Style */
+#login .container #login-row #login-column #login-box {
+	/* margin-top: 120px; */
+	max-width: 600px;
+	height: 320px;
+	border: 1px solid #9C9C9C;
+	background-color: #EAEAEA;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+	padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #register-link
+	{
+	margin-top: -85px;
+}

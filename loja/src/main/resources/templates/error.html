@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template :: header-css">
+<meta charset=utf-8/>
+</head>
+<body class="d-flex flex-column min-vh-100">
+		<div th:insert="fragments/template :: header-css"></div>
+	<div th:insert="fragments/template :: header"></div>
+	<main>
+		<div class="container">
+			<h1>Ocorreu um erro</h1>
+			<div class="alert alert-error" th:if="${message}">
+				<h2 th:text="${message}"></h2>
+			</div>
+			<div class="alert alert-error" th:if="${falha}">
+				<h2 th:text="${falha}"></h2>
+			</div>
+			<div th:if="${param.error}">
+				<div class="alert alert-error">
+					Falha ao fazer Login.
+					<div th:if="${SPRING_SECURITY_LAST_EXCEPTION}">
+						<h2 th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div th:replace="fragments/template :: footer"></div>
+</body>
+</html>

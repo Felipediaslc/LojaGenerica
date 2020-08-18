@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/template :: header-css">
+<meta charset=utf-8/>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+	<div th:insert="fragments/template :: header"></div>
+	
+	<main class="container  mt-5">
+		<form action="#" th:action="@{/carrinho/add}">
+			<section class="row">
+				<input type="hidden" name="codigo" th:value="${produto.codigo}" />
+				<article class="col p-0"></article>
+				<article class="col p-0">
+					<img class="img-fluid" th:src="${produto.urlImagem}">
+				</article>
+				<article class="col p-0">
+					<div class="mt-5 ml-2">
+						<p th:text="${produto.descricao}"></p>
+						<h5 th:text="${produto.precoFormatado}" class="text-info"
+							id="preco"></h5>
+						<button type="submit"
+							class="btn btn-info text-white text-uppercase rounded"
+							title="Comprar">Comprar</button>
+					</div>
+				</article>
+				<article class="col p-0"></article>
+			</section>
+		</form>
+	</main>
+	
+	<div th:replace="fragments/template :: footer"></div>
+</body>
+</html>
