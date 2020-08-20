@@ -11,7 +11,7 @@ Caso não tenha cadastrado nenhum usuário, ele pode ser cadastrado clicando em 
 
 ![Tela Inicial](cadUsuario.png)
 
-Na tela de cadastro de usuário, o usuário deve informar os dados e senha. Ao finalizar o registro ele poderá logar-se
+Na tela de cadastro de usuário, o usuário deve informar os dados e senha. Ao "Enviar" o registro ele poderá logar-se
 
 ![Tela Inicial](telaUser.png)
 
