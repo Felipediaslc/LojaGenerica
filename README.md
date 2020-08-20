@@ -19,13 +19,17 @@ Na tela de usuário (user) você tem as opções de favoritos (não habilitada a
 
 ![Tela Inicial](telaCarrinho.png)
 
-Ao visualizar e adicionar os produtos no carrinho, o usuário deverá decidir na finalização do pagamento. O servidor simulando um banco irá validar o pagamento e retornar o sucesso ou não da transação.
+Ao visualizar e adicionar os produtos no carrinho, o usuário pode mudar a quantidade de itens adicionados e deverá decidir na finalização do pagamento. 
 
 ![Tela Inicial](telaPagamento.png)
 
-Na tela de usuario (admin) tem a opção de CADASTRAR habilitada. Ao clicar nela você irá para uma tela para digitar informações dos produtos que deseja cadastrar. E não poderá realizar compras.
+O servidor simulando um banco irá validar o pagamento e retornar o sucesso ou não da transação.
 
 ![Tela Inicial](cadProd.png)
+
+Na tela de usuario (admin) tem a opção de CADASTRAR habilitada. Ao clicar nela você irá para uma tela para digitar informações dos produtos que deseja cadastrar. E não poderá realizar compras.
+
+
 
 
 
