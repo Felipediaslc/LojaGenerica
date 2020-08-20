@@ -4,4 +4,4 @@ Projeto de uma loja feita com spring boot utilizando maven, bootstrap, spring se
 ![GitHub Logo](/images/logo.png)
 Format: ![Alt Text](url)
 
-![GitHub telainicial](/LojaGenerica/Tela inicial.jpg)
+![LojaGenerica telainicial](/LojaGenerica/Tela inicial.jpg)
