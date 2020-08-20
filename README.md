@@ -3,4 +3,4 @@ Projeto de uma loja feita com spring boot utilizando maven, bootstrap, spring se
 
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
-![Tela Inicial](https://github.com/guilhermevcoskype/LojaGenerica/Tela inicial.jpg)
+![Tela Inicial](/guilhermevcoskype/LojaGenerica/blob/master/TelaInicial.jpg)
