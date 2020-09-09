@@ -19,9 +19,4 @@ public class JPQLQueries {
 		return entityManager.createQuery("SELECT p FROM Produto p ORDER BY p.dataInsercao desc",
 				Produto.class).setMaxResults(5).getResultList();
 	}
-	
-	public List<Produto> findProdutoDaBusca(String busca) {
-		return entityManager.createQuery("SELECT p FROM Produto p WHERE p.descricao like CONCAT('%', :busca, '%') ",
-				Produto.class).setParameter("busca", busca).getResultList();
-	}
 }

@@ -39,11 +39,6 @@ public class Usuario implements UserDetails {
 		this.nome = nome;
 	}
 
-	@Override
-	public String getPassword() {
-		return this.senha;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -81,6 +76,11 @@ public class Usuario implements UserDetails {
 		return this.nome;
 	}
 
+	@Override
+	public String getPassword() {
+		return this.senha;
+	}
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;

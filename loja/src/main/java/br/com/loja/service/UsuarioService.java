@@ -10,15 +10,16 @@ import br.com.loja.model.Usuario;
 import br.com.loja.repository.UsuarioRepository;
 
 @Service
-public class UsuarioService implements UserDetailsService{
+public class UsuarioService implements UserDetailsService {
 
-	@Autowired UsuarioRepository repository;
+	@Autowired
+	private UsuarioRepository repository;
 
 	@Override
-	public UserDetails loadUserByUsername (String email) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		return repository.findById(email).orElse(null);
 	}
-	
+
 	public void salvar(Usuario usuario) {
 		repository.save(usuario);
 	}
