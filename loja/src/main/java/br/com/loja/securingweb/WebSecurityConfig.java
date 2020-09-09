@@ -48,29 +48,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/");
 	}
 
-	    @Override
-	    public void configure(WebSecurity web) throws Exception {
-	        web
-	            .ignoring()
-	            .antMatchers("/resources/**", "/static/**","/webjars/**");
-	    }
-	    
-	    @Bean
-	    public DaoAuthenticationProvider authProvider() {
-	        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-	        authProvider.setUserDetailsService(usuarioService);
-	        authProvider.setPasswordEncoder(passwordEncoder());
-	        return authProvider;
-	    }
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web
+		.ignoring()
+		.antMatchers("/resources/**", "/static/**","/webjars/**");
+	}
 
-	    @Bean
-	    public PasswordEncoder passwordEncoder() {
-	        return new BCryptPasswordEncoder();
-	    }
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.authenticationProvider(authProvider());
+	}
 
-	    @Override
-	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	        auth.authenticationProvider(authProvider());
-	    }
+	@Bean
+	public DaoAuthenticationProvider authProvider() {
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(usuarioService);
+		authProvider.setPasswordEncoder(passwordEncoder());
+		return authProvider;
+	}
 
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }
