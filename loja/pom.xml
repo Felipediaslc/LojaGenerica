@@ -9,6 +9,12 @@
 	<name>loja</name>
 
 	<properties>
+	        <sonar.projectKey>LojaGenerica</sonar.projectKey>
+		<sonar.host.url>http://ip172-18-0-7-bunhou1qckh0008nircg-9000.direct.labs.play-with-docker.com</sonar.host.url>
+		<sonar.login>46d333e0ff5c400caa96111f8184f762186c6d90</sonar.login>	
+		<sonar.language>java</sonar.language>	
+		<sonar.sources>src/main/java</sonar.sources>
+		<sonar.java.binaries>target/classes</sonar.java.binaries>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
